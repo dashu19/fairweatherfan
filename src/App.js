@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//road map: get location/enter location, use location to ping weather and ticket apis to get data, process data and show to user
+
+class FWF extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      initial: true,
+    };
+  }
+
+  generateTestButton = () => {
+    return(
+      <div>
+        <button onClick={() => this.getUserLocation()}>testing button for location</button>
+      </div>
+    );
+  }
+
+  getUserLocation = () => {
+    console.log('hello');
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(this.logLocation);
+    }
+  }
+
+  logLocation = (position) =>{
+    console.log(position);
+  }
+
+  render = () => {
+    return(
+      <div>
+        {this.generateTestButton()}
+      </div>
+    );
+  }
+
 }
 
-export default App;
+export default FWF;
